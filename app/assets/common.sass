@@ -1,0 +1,30 @@
+html
+    font-size: 16px
+    word-spacing: 1px
+    // 携帯で画面の縦・横で文字サイズが変わらないように
+    //   ios
+    -ms-text-size-adjust: 100%
+    //   iphone safari
+    -webkit-text-size-adjust: 100%
+    // text rendering
+    // 文字をみえやすくする
+    -moz-osx-font-smoothing: grayscale
+    -webkit-font-smoothing: antialiased
+    // paddingとborderを幅と高さに含める
+    box-sizing: border-box
+
+    .wrapper
+        background: #FAFAFA
+        width: 100%
+        min-height: 100vh
+    .container:not(.__nuxt-error-page)
+        width: 96%
+        max-width: 980px
+        padding: 30px 0
+        margin: 0 auto
+        justify-content: center
+        min-height: calc(100vh - 61px)
+        // 要素を並列に並べる
+        display: flex
+        align-items: flex-start
+
