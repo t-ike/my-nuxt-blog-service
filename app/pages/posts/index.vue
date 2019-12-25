@@ -1,13 +1,13 @@
 <template lang="pug">
     section.container
-        v-card(width="100%")
+        v-card.elevation-3(width="100%")
             v-card-title 新着投稿
             v-divider
             v-data-table(
                 :headers="headers"
                 :items="posts"
-                class="elevation-1"
-            )
+                hide-default-footer
+            ).pa-3
 
 </template>
 
