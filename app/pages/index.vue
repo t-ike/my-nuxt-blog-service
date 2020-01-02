@@ -16,11 +16,8 @@
           v-checkbox(v-model="isCreateMode" label="アカウントを作成する").py-0.my-0
           v-spacer
           v-card-actions
-            //- v-btn(color="primary" @click="snackbar=true")
             v-btn(color="primary" @click="handleClickSubmit")
-              span.px-3 {{buttonText}}
-            v-snackbar(v-model="this.snackbar.status")
-              | {{ this.snackbar.message }}
+              span.px-3 {{ buttonText }}
 </template>
 
 <script>
@@ -44,7 +41,7 @@ export default {
       return this.isCreateMode ? '新規登録' : 'ログイン'
     },
     // storeのuserのgetterを展開
-    ...mapGetters(['user', 'snackbar'])
+    ...mapGetters(['user'])
   },
   methods: {
     async handleClickSubmit() {
@@ -56,12 +53,6 @@ export default {
           this.$router.push('/posts/')
         } catch (e) {
           console.log(e)
-          this.$notify.error({
-            title: 'アカウント作成失敗',
-            message: '既に登録されているか、不正なユーザー ID です',
-            position: 'bottom-right',
-            duration: 1000
-          })
         }
       } else {
         try {
@@ -70,12 +61,6 @@ export default {
           // this.$router.push('/posts/')
         } catch (e) {
           console.log(e)
-          this.$notify.error({
-            title: 'ログイン失敗',
-            message: '不正なユーザー ID です',
-            position: 'bottom-right',
-            duration: 1000
-          })
         }
       }
     },
