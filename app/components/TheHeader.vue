@@ -11,6 +11,7 @@ div
             v-btn(v-if="user" text) {{ user.id }}
             v-btn(text to="/posts/new" nuxt) 新規投稿
             v-btn(text) ログイン
+            v-btn(text @click="logout") ログアウト
         v-menu(left bottom)
             template(v-slot:activator="{ on }")
                 v-btn(icon v-on="on")
@@ -22,11 +23,14 @@ div
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
     ...mapGetters(['user'])
+  },
+  methods: {
+    ...mapActions(['logout'])
   }
 }
 </script>

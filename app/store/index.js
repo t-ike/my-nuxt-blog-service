@@ -1,3 +1,5 @@
+import Cookies from 'universal-cookie'
+
 export const state = () => ({
   isLoggedIn: false,
   user: null,
@@ -20,6 +22,10 @@ export const mutations = {
     state.user = user
     state.isLoggedIn = true
   },
+  clearUser(state) {
+    state.user = null
+    state.isLoggedIn = false
+  },
   setSnackBar(state, { snackbar }) {
     state.snackbar.status =
       'status' in snackbar ? snackbar.status : state.snackbar.status
@@ -33,12 +39,9 @@ export const mutations = {
 }
 
 export const actions = {
-  // async login({ commit }, { id }) {
-  login({ commit }, { id }) {
-    const user = {
-      id: 1
-    }
-    // const user = await this.$axios.$get(`/users/${id}.json`)
+  async login({ commit }, { id }) {
+    // login({ commit }, { id }) {
+    const user = await this.$axios.$get(`/users/${id}.json`)
     if (!user.id) {
       const snackbar = {
         status: true,
@@ -58,15 +61,15 @@ export const actions = {
     }
     commit('setSnackBar', { snackbar })
   },
-  // async register({ commit }, { id }) {
-  register({ commit }, { id }) {
+  async register({ commit }, { id }) {
+    // register({ commit }, { id }) {
     const payload = {}
     payload[id] = { id }
-    // await this.$axios.$patch(`/users.json`, payload)
-    // const user = await this.$axios.$get(`/users/${id}.json`)
-    const user = {
-      id: 1
-    }
+    await this.$axios.$patch(`/users.json`, payload)
+    const user = await this.$axios.$get(`/users/${id}.json`)
+    // const user = {
+    //   id: 1
+    // }
     if (!user.id) {
       const snackbar = {
         status: true,
@@ -85,5 +88,10 @@ export const actions = {
       message: 'ようこそ、My Nuxt Blog Serviceへ！'
     }
     commit('setSnackBar', { snackbar })
+  },
+  logout({ commit }) {
+    const cookies = new Cookies()
+    cookies.remove('user', { path: '/' })
+    commit('clearUser')
   }
 }

@@ -11,6 +11,7 @@
           placeholder="akerun@photosynth.co.jp"
           outlined
           prepend-inner-icon="mdi-email"
+          v-model="formData.id"
         )
         div.d-flex
           v-checkbox(v-model="isCreateMode" label="アカウントを作成する").py-0.my-0

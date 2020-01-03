@@ -26,8 +26,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-// import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   asyncData({ redirect, store }) {
@@ -45,8 +44,16 @@ export default {
     ...mapGetters(['user'])
   },
   methods: {
-    // async publish() {
-    publish() {}
+    async publish() {
+      const payload = {
+        user: this.user,
+        ...this.formData
+      }
+      await this.publishPost({ payload })
+      this.$router.push('/posts')
+    },
+    ...mapActions('users', ['updateUser']),
+    ...mapActions('posts', ['publishPost'])
   }
 }
 </script>
