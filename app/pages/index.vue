@@ -58,7 +58,7 @@ export default {
         try {
           await this.login({ ...this.formData })
           cookies.set('user', JSON.stringify(this.user))
-          // this.$router.push('/posts/')
+          this.$router.push('/posts/')
         } catch (e) {
           console.log(e)
         }

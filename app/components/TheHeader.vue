@@ -8,7 +8,8 @@ div
             v-btn(text) 投稿一覧
         v-spacer
         v-toolbar-items
-            v-btn(text) 新規投稿
+            v-btn(v-if="user" text) {{ user.id }}
+            v-btn(text to="/posts/new" nuxt) 新規投稿
             v-btn(text) ログイン
         v-menu(left bottom)
             template(v-slot:activator="{ on }")
@@ -21,7 +22,13 @@ div
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters(['user'])
+  }
+}
 </script>
 
 <style scoped></style>
