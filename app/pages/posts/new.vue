@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.container
+  section
     v-card(min-width="500")
       v-card-text
         v-form.px-2.pt-2

@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.container
+  section
     v-card(min-width="500")
       v-card-title.title.font-weight-light Login
       v-divider

@@ -1,11 +1,12 @@
 <template lang="pug">
-    section.container
+    section
         v-card.elevation-3(width="100%")
             v-card-title 新着投稿
             v-divider
             v-data-table(
                 :headers="headers"
                 :items="showPosts"
+                @click:row="handleClick"
                 hide-default-footer
             ).pa-3
 
@@ -30,7 +31,7 @@ export default {
         },
         {
           text: '投稿者',
-          value: 'id'
+          value: 'user_id'
         },
         {
           text: '投稿日時',
@@ -43,7 +44,8 @@ export default {
     showPosts() {
       return this.posts.map((post) => {
         post = {
-          id: post.user.id,
+          id: post.id,
+          user_id: post.user.id,
           title: post.title,
           body: post.body,
           created_at: moment(post.created_at).format('YYYY/MM/DD HH:mm:ss')
