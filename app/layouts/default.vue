@@ -2,10 +2,12 @@
 v-app
   TheHeader
   div.wrapper
-    v-snackbar(v-model="this.snackbar.status" :color="this.snackbar.color" top right)
+    v-snackbar(v-model="this.snackbar.status" :color="this.snackbar.color" :timeout="snackbarTimeout" top right)
       v-card(width="100%" :color="this.snackbar.color" elevation=0)
         v-card-title {{ this.snackbar.title }}
-        v-card-subtitle {{ this.snackbar.message }}
+        v-card-text {{ this.snackbar.message }}
+        //- v-card-actions
+        //-   v-btn(color="this.snackbar.color" text @click="") close
     nuxt.container
 </template>
 
@@ -14,6 +16,9 @@ import { mapGetters } from 'vuex'
 import TheHeader from '~/components/TheHeader.vue'
 
 export default {
+  data: () => ({
+    snackbarTimeout: 2000
+  }),
   components: {
     TheHeader
   },
