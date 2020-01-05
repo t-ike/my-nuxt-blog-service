@@ -6,7 +6,7 @@
       v-divider
       v-card-text
         p {{post.body}}
-        p(align="right") {{post.created_at | time}}
+        p(align="right") {{post.createdAt | time}}
     div.mt-3
       v-btn(to="/posts" nuxt) 投稿一覧へ戻る
 

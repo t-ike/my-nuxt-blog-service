@@ -37,7 +37,7 @@ export default {
   computed: {
     userPosts() {
       return Object.entries(this.user.posts).map(([id, post]) => {
-        post.created_at = moment(post.created_at).format('YYYY/MM/DD HH:mm:ss')
+        post.created_at = moment(post.createdAt).format('YYYY/MM/DD HH:mm:ss')
         return { id, ...post }
       })
     },
