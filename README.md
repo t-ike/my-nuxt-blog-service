@@ -20,3 +20,12 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## envファイル設定
+* FIREBASEのDatabaseを自身で準備した上でURLを設定してください
+
+```
+cp .env.example .env
+vi .env
+
+```

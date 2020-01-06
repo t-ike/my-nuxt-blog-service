@@ -57,7 +57,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'https://nuxt-blog-service-566f6.firebaseio.com/'
+    baseURL: process.env.FIREBASE_URL
   },
   /*
    ** vuetify module configuration
@@ -87,6 +87,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) { }
   }
 }
