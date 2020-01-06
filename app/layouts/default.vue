@@ -24,7 +24,8 @@ export default {
   }),
   computed: {
     // storeのuserのgetterを展開
-    ...mapGetters(['user', 'snackbar'])
+    ...mapGetters(['user']),
+    ...mapGetters('snackbar', ['snackbar'])
   }
 }
 </script>
