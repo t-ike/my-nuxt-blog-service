@@ -44,10 +44,6 @@ export const actions = {
     const user = await this.$axios.$get(`/users/${payload.user.id}.json`)
     const postId = (await this.$axios.$post('/posts.json', payload)).name
     const createdAt = moment().format()
-    // payload = {
-    //   createdAt,
-    //   ...payload
-    // }
     const post = { id: postId, ...payload, createdAt }
     const putData = { id: postId, ...payload, createdAt }
     delete putData.user
