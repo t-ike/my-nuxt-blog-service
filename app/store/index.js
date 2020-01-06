@@ -1,4 +1,5 @@
 import Cookies from 'universal-cookie'
+import moment from '~/plugins/moment'
 
 export const state = () => ({
   isLoggedIn: false,
@@ -93,5 +94,19 @@ export const actions = {
     const cookies = new Cookies()
     cookies.remove('user', { path: '/' })
     commit('clearUser')
+  },
+  async addLikeLogToUser({ commit }, { user, post }) {
+    user.likes.push({
+      created_at: moment().format(),
+      user_id: user.id,
+      post_id: post.id
+    })
+    const newUser = await this.$axios.$put(`/users/${user.id}.json`, user)
+    commit('updateUser', { user: newUser })
+  },
+  async removeLikeLogToUser({ commit }, { user, post }) {
+    user.likes = post.likes.filter((like) => like.user_id !== user.id) || []
+    const newUser = await this.$axios.$put(`/users/${user.id}.json`, user)
+    commit('updateUser', { user: newUser })
   }
 }

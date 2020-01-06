@@ -16,12 +16,12 @@ import { mapGetters } from 'vuex'
 import TheHeader from '~/components/TheHeader.vue'
 
 export default {
-  data: () => ({
-    snackbarTimeout: 2000
-  }),
   components: {
     TheHeader
   },
+  data: () => ({
+    snackbarTimeout: 2000
+  }),
   computed: {
     // storeのuserのgetterを展開
     ...mapGetters(['user', 'snackbar'])

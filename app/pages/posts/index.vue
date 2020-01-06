@@ -43,7 +43,6 @@ export default {
   computed: {
     showPosts() {
       return this.posts.map((post) => {
-        console.log(post.createdAt)
         post = {
           id: post.id,
           user_id: post.user.id,
