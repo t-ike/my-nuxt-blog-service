@@ -25,7 +25,7 @@ export const mutations = {
 export const actions = {
   async login({ dispatch, commit }, { id }) {
     const user = await this.$axios.$get(`/users/${id}.json`)
-    if (!user.id) {
+    if (!user || !user.id) {
       const snackbar = {
         status: true,
         color: 'error',
@@ -49,7 +49,7 @@ export const actions = {
     payload[id] = { id }
     await this.$axios.$patch(`/users.json`, payload)
     const user = await this.$axios.$get(`/users/${id}.json`)
-    if (!user.id) {
+    if (!user || !user.id) {
       const snackbar = {
         status: true,
         color: 'error',

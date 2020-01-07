@@ -1,31 +1,44 @@
 export const state = () => ({
-  snackbar: {
-    status: false,
-    color: 'normal',
-    title: null,
-    message: null
-  }
+  status: false,
+  color: 'normal',
+  title: null,
+  message: null
 })
 
 export const getters = {
-  snackbar: (state) => state.snackbar
+  snackbarStatus: (state) => state.status,
+  snackbarColor: (state) => state.color,
+  snackbarTitle: (state) => state.title,
+  snackbarMessage: (state) => state.message
 }
 
 export const mutations = {
-  setSnackBar(state, { snackbar }) {
-    state.snackbar.status =
-      'status' in snackbar ? snackbar.status : state.snackbar.status
-    state.snackbar.color =
-      'color' in snackbar ? snackbar.color : state.snackbar.color
-    state.snackbar.message =
-      'message' in snackbar ? snackbar.message : state.snackbar.message
-    state.snackbar.title =
-      'title' in snackbar ? snackbar.title : state.snackbar.title
+  setSnackbarStatus(state, { status }) {
+    state.status = status
+  },
+  setSnackbarColor(state, { color }) {
+    state.color = color
+  },
+  setSnackbarTitle(state, { title }) {
+    state.title = title
+  },
+  setSnackbarMessage(state, { message }) {
+    state.message = message
   }
 }
 
 export const actions = {
   displaySnackbar({ commit }, { snackbar }) {
-    commit('setSnackBar', { snackbar })
+    const status = snackbar.status
+    const color = snackbar.color
+    const title = snackbar.title
+    const message = snackbar.message
+    commit('setSnackbarStatus', { status })
+    commit('setSnackbarColor', { color })
+    commit('setSnackbarTitle', { title })
+    commit('setSnackbarMessage', { message })
+  },
+  setStatus({ commit }, { status }) {
+    commit('setSnackbarStatus', { status })
   }
 }

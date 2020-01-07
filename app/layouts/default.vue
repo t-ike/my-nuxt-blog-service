@@ -2,17 +2,17 @@
 v-app
   TheHeader
   div.wrapper
-    v-snackbar(v-model="this.snackbar.status" :color="this.snackbar.color" :timeout="snackbarTimeout" top right)
-      v-card(width="100%" :color="this.snackbar.color" elevation=0)
-        v-card-title {{ this.snackbar.title }}
-        v-card-text {{ this.snackbar.message }}
-        //- v-card-actions
-        //-   v-btn(color="this.snackbar.color" text @click="") close
+    v-snackbar(v-model="isDisplayed" :color="snackbarColor" :timeout="snackbarTimeout" bottom right)
+      v-card(width="100%" :color="snackbarColor" elevation=0)
+        v-card-title {{ snackbarTitle }}
+        v-card-text {{ snackbarMessage }}
+        v-card-actions
+          v-btn(:color="snackbarColor" text @click="closeSnackbar") close
     nuxt.container
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import TheHeader from '~/components/TheHeader.vue'
 
 export default {
@@ -23,9 +23,26 @@ export default {
     snackbarTimeout: 2000
   }),
   computed: {
-    // storeのuserのgetterを展開
-    ...mapGetters(['user']),
-    ...mapGetters('snackbar', ['snackbar'])
+    isDisplayed: {
+      get() {
+        return this.snackbarStatus
+      },
+      set(v) {
+        this.setStatus(v)
+      }
+    },
+    ...mapGetters('snackbar', [
+      'snackbarStatus',
+      'snackbarColor',
+      'snackbarTitle',
+      'snackbarMessage'
+    ])
+  },
+  methods: {
+    closeSnackbar() {
+      this.setStatus(false)
+    },
+    ...mapActions('snackbar', ['setStatus'])
   }
 }
 </script>
